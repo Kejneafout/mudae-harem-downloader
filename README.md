@@ -26,15 +26,12 @@ Mudae Harem Downloader is a tool for converting data from the Mudae game into a 
 
 ### 1. Prepare Input Data
 
-1. Run the $mmi-r-k-s command on your favorite server
-2. Copy the entire output, from the harem title, to the end
-3. Paste it in `output.txt`.
+- Run the `$mmi-r-k-s` command on your favorite server,
+- Copy the entire output, from the harem title, to the end,
+- Paste it in `output.txt`.
 
 I left my perfect harem in the `output.txt` file as an example.
 So you know what to paste.
-
-Does not take alias2 into account, only notes.
-If you have aliases2, change them to notes, and then run the $mmi-r-k-s command again.
 
 ### 2. Run the Script
 
@@ -45,6 +42,12 @@ node index.js
 ```
 
 This will download character images, create a JSON file, and create a .zip archive containing the JSON file and images.
+Images are named as follows:
+`[index]_[rank]_[name].{png,gif}`
+
+- `[index]` is the order in which you sorted your harem with $sm and $smp,
+- `[rank]` is the character's claim rank,
+- `[name]` is the character's name.
 
 ### 3. Access the Output
 
@@ -52,6 +55,13 @@ Once the script has finished running, you will find the following files in the p
 
 - `data.json`: JSON file containing character data.
 - `export_<timestamp>.zip`: .zip archive containing `data.json` and character images.
+
+### 4. Limitations
+
+- Does not take alias2 into account, only notes,
+- Does not download images in formats other than .png or .gif, such as .webp,
+- Does not take like ranks into account, only claim ranks (`r-` flag),
+- Does not take keys into accounts (`k-` flag).
 
 ## License
 

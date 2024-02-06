@@ -84,6 +84,7 @@ async function downloadImages(characters, imagesDirectory) {
 }
 
 async function replaceRemotePathsWithLocal(data, imagesDirectory) {
+
     data.characters.forEach((character, index) => {
 	const rank = character.rank.match(/\d+/)[0];
 	const name = character.name.replace(/\s+/g, '_');
@@ -95,11 +96,16 @@ async function replaceRemotePathsWithLocal(data, imagesDirectory) {
     await saveJsonToFile(data, 'data.json');
 }
 
-async function createZip(jsonFilename, imagesDirectory) {
+async function createZip(exportsDirectory, jsonFilename, imagesDirectory) {
+
+    // Check if imagesDirectory exists, if not, create it
+    if (!fs.existsSync(exportsDirectory)) {
+	fs.mkdirSync(exportsDirectory, { recursive: true });
+    }
 
     const data = require('./' + jsonFilename);
     const archive = archiver('zip', { zlib: { level: 9 } });
-    const zipFilename = `export_${moment().format('YYYYMMDD_HHmmss')}.zip`;
+    const zipFilename = exportsDirectory + `export_${moment().format('YYYYMMDD_HHmmss')}.zip`;
     const zipStream = fs.createWriteStream(zipFilename);
 
     archive.pipe(zipStream);
@@ -108,12 +114,16 @@ async function createZip(jsonFilename, imagesDirectory) {
     archive.append(JSON.stringify(data, null, 2), { name: jsonFilename });
 
     // Add images to the zip
-    archive.directory(imagesDirectory, 'images');
+    archive.directory(imagesDirectory, imagesDirectory);
 
     // Finalize the zip creation
     await archive.finalize();
 
     console.log(`Zip file ${zipFilename} created successfully.`);
+
+    // Delete data.json and images/ after .zip creation
+    await fs.rmSync(imagesDirectory, { recursive: true });
+    await fs.unlinkSync(jsonFilename);
 }
 
 // Example usage, replace variables if needed
@@ -122,9 +132,9 @@ async function main() {
     try {
 	const mmirksJson = await saveHarem('output.txt');
 	await saveJsonToFile(mmirksJson, 'data.json');
-	await downloadImages(mmirksJson.characters, 'images');
-	await replaceRemotePathsWithLocal(mmirksJson, 'images');
-	await createZip('data.json', 'images');
+	await downloadImages(mmirksJson.characters, 'images/');
+	await replaceRemotePathsWithLocal(mmirksJson, 'images/');
+	await createZip('exports/', 'data.json', 'images/');
     } catch (error) {
 	console.error('An error occurred:', error);
     }
