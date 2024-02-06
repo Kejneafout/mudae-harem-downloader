@@ -41,7 +41,14 @@ Run the script using Node.js. Execute the following command in the terminal:
 node index.js
 ```
 
-This will download character images, create a JSON file, and create a .zip archive containing the JSON file and images.
+This will download character images, create a `.json` file, and create a `.zip` archive containing the `.json` file and `images`.
+
+`export_YYYYMMDD_HHmmss.zip`
+|- `data.json`
+|- `images/`
+  |- ...
+  |- ...
+
 Images are named as follows:
 `[index]_[rank]_[name].{png,gif}`
 
@@ -51,10 +58,9 @@ Images are named as follows:
 
 ### 3. Access the Output
 
-Once the script has finished running, you will find the following files in the project directory:
+Once the script has finished running, you will find the following files in the `exports/` directory:
 
-- `data.json`: JSON file containing character data.
-- `export_<timestamp>.zip`: .zip archive containing `data.json` and character images.
+- `export_<timestamp>.zip`: archive containing `data.json` and character `images/`.
 
 ### 4. Limitations
 
