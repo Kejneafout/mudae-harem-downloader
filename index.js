@@ -25,6 +25,11 @@ async function saveHarem(inputFile) {
     const characters = [];
 
     for (const line of _body) {
+	// Line is empty, skip it
+	if (!line.trim()) {
+	    continue;
+	}
+
 	const elements = line.match(regex);
       
 	if (elements) {
