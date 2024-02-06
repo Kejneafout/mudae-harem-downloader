@@ -1,0 +1,29 @@
+{
+  "name": "mudae-harem-downloader",
+  "version": "1.0.0",
+  "description": "Mudae Download Harem from $mmi-r-k-s command output",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kejneafout/mudae-harem-downloader.git"
+  },
+  "keywords": [
+    "mudae",
+    "harem",
+    "downloader"
+  ],
+  "author": "Kejneafout",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kejneafout/mudae-harem-downloader/issues"
+  },
+  "homepage": "https://github.com/Kejneafout/mudae-harem-downloader#readme",
+  "dependencies": {
+    "archiver": "^6.0.1",
+    "axios": "^1.6.7",
+    "moment": "^2.30.1"
+  }
+}
