@@ -1,6 +1,8 @@
 # Mudae Harem Downloader
 
-Mudae Harem Downloader is a tool for converting data from the Mudae game into a .zip file containing JSON data and character images.
+Mudae Harem Downloader is a tool for converting data from the Mudae game into a ZIP archive containing JSON data and character images.
+
+That archive can then be used with [Mudae Harem Viewer](https://github.com/Kejneafout/mudae-harem-viewer) to view your harem as if you typed the `$mm` command !
 
 ## Installation
 
@@ -31,7 +33,6 @@ Mudae Harem Downloader is a tool for converting data from the Mudae game into a 
 - Paste it in `output.txt`.
 
 I left my perfect harem in the `output.txt` file as an example.
-So you know what to paste.
 
 ### 2. Run the Script
 
@@ -41,18 +42,17 @@ Run the script using Node.js. Execute the following command in the terminal:
 node index.js
 ```
 
-This will download character images, create a `.json` file, and create a `.zip` archive containing the `.json` file and `images`.
-
-`export_YYYYMMDD_HHmmss.zip`
-|- `data.json`
-|- `images/`
-  |- ...
-  |- ...
+The script will:
+- Convert data from `output.txt` into JSON format and save it to `data.json`,
+- Download remote `.png` or `.gif` images and save them in the `images/` directory,
+- Change remote image paths to local image paths in `images/`,
+- Create a `.zip` archive in the `exports/` directory, containing the `data.json` file and `images/` directory,
+- Once the `.zip` is done, delete `data.json` and `images/`.
 
 Images are named as follows:
 `[index]_[rank]_[name].{png,gif}`
 
-- `[index]` is the order in which you sorted your harem with $sm and $smp,
+- `[index]` is the order in which you sorted your harem with `$sm` and `$smp`,
 - `[rank]` is the character's claim rank,
 - `[name]` is the character's name.
 
@@ -60,14 +60,16 @@ Images are named as follows:
 
 Once the script has finished running, you will find the following files in the `exports/` directory:
 
-- `export_<timestamp>.zip`: archive containing `data.json` and character `images/`.
+- `export_YYYYMMDD_HHmmss.zip`: archive containing `data.json` and character `images/`.
 
-### 4. Limitations
+You can upload this to my other tool: [Mudae Harem Viewer](https://github.com/Kejneafout/mudae-harem-viewer)
 
-- Does not take alias2 into account, only notes,
-- Does not download images in formats other than .png or .gif, such as .webp,
+## Limitations
+
+- Does not take `$a2` into account, only `$n`, it will still work if you don't have any,
+- Does not download images in formats other than `.png` or `.gif`, such as `.webp`,
 - Does not take like ranks into account, only claim ranks (`r-` flag),
-- Does not take keys into accounts (`k-` flag).
+- Does not take keys value into account (`k-` flag).
 
 ## License
 
