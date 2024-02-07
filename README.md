@@ -24,6 +24,14 @@ That archive can then be used with [Mudae Harem Viewer](https://github.com/Kejne
    npm install
    ```
 
+## Dependencies
+
+The Mudae Harem Downloader relies on the following npm packages:
+
+- [Axios](https://www.npmjs.com/package/axios): Promise-based HTTP client for the browser and Node.js.
+- [Archiver](https://www.npmjs.com/package/archiver): Streaming interface for creating and extracting zip archives.
+- [Moment](https://www.npmjs.com/package/moment): Parse, validate, manipulate, and display dates and times in JavaScript.
+
 ## Usage
 
 ### 1. Prepare Input Data
