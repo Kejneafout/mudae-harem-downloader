@@ -36,7 +36,7 @@ async function saveHarem(inputFile) {
 	    const character = {};
 	    character.rank = elements[1];
 	    character.name = elements[2];
-	    character.title = elements[3] || '';
+	    character.note = elements[3] || '';
 	    character.value = elements[4];
 	    character.image = elements[5];
 	    characters.push(character);
@@ -115,7 +115,7 @@ async function createZip(exportsDirectory, jsonFilename, imagesDirectory) {
 
     archive.pipe(zipStream);
 
-    // Add the mmirksJson as a file in the zip
+    // Add the textJson as a file in the zip
     archive.append(JSON.stringify(data, null, 2), { name: jsonFilename });
 
     // Add images to the zip
@@ -135,10 +135,15 @@ async function createZip(exportsDirectory, jsonFilename, imagesDirectory) {
 async function main() {
 
     try {
-	const mmirksJson = await saveHarem('output.txt');
-	await saveJsonToFile(mmirksJson, 'data.json');
-	await downloadImages(mmirksJson.characters, 'images/');
-	await replaceRemotePathsWithLocal(mmirksJson, 'images/');
+	// two text files
+	// rename saveHarem to fetchData
+	const dataJson = await saveHarem('output.txt');
+	// either move download images here or create another function addNotesImages
+	// use the following example line to find object based on character's name
+	// var result = data.find(character => character.ip_address === "180.66.162.255");
+	await saveJsonToFile(dataJson, 'data.json');
+	await downloadImages(dataJson.characters, 'images/');
+	await replaceRemotePathsWithLocal(dataJson, 'images/');
 	await createZip('exports/', 'data.json', 'images/');
     } catch (error) {
 	console.error('An error occurred:', error);
