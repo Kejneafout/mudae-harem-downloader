@@ -162,8 +162,8 @@ async function createZip(exportsDirectory, jsonFilename, imagesDirectory) {
 async function main() {
 
     try {
-	const dataJson = await fetchSeriesValues('output1_series_value.txt');
-	await fetchNotesImages('output2_notes_image.txt', dataJson);
+	const dataJson = await fetchSeriesValues('output1_series_values.txt');
+	await fetchNotesImages('output2_notes_images.txt', dataJson);
 	await saveJsonToFile(dataJson, 'data.json');
 	await downloadImages(dataJson.characters, 'images/');
 	await replaceRemotePathsWithLocal(dataJson, 'images/');

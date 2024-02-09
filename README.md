@@ -6,19 +6,21 @@ That archive can then be used with [Mudae Harem Viewer](https://github.com/Kejne
 
 ## Installation
 
-1. Clone the repository:
+1. Install Node.js in your system, preferably using [nvm](https://github.com/nvm-sh/nvm) for Linux or [nvm-windows](https://github.com/coreybutler/nvm-windows) for Windows
+
+2. Clone the repository:
 
    ```bash
    git clone https://github.com/Kejneafout/mudae-harem-downloader.git
    ```
 
-2. Navigate to the project directory:
+3. Navigate to the project directory:
 
    ```bash
    cd mudae-harem-downloader
    ```
 
-3. Install dependencies:
+4. Install dependencies:
 
    ```bash
    npm install
@@ -36,11 +38,13 @@ The Mudae Harem Downloader relies on the following npm packages:
 
 ### 1. Prepare Input Data
 
-- Run the `$mmi-r-k-s` command on your favorite server,
-- Copy the entire output, from the harem title, to the end,
-- Paste it in `output.txt`.
+- Run the `$mmsr-a+k-` and `$mmsr-i-` commands on your favorite server,
+- Copy and paste the output of `$mmsr-a+k-` in `output1_series_values.txt`.
+- Copy and paste the output of `$mmsr-i-` in `output2_notes_images.txt`.
 
-I left my perfect harem in the `output.txt` file as an example.
+**Note:** Copy the outputs manually, do not Right-click => Copy text.
+
+I left my perfect harem in both output files as an example.
 
 ### 2. Run the Script
 
@@ -51,7 +55,7 @@ node index.js
 ```
 
 The script will:
-- Convert data from `output.txt` into JSON format and save it to `data.json`,
+- Convert data from both output files into JSON format and save it to `data.json`,
 - Download remote `.png` or `.gif` images and save them in the `images/` directory,
 - Change remote image paths to local image paths in `images/`,
 - Create a `.zip` archive in the `exports/` directory, containing the `data.json` file and `images/` directory,
