@@ -6,7 +6,7 @@ That archive can then be used with [Mudae Harem Viewer](https://github.com/Kejne
 
 ## Installation
 
-1. Install Node.js in your system, preferably using [nvm](https://github.com/nvm-sh/nvm) for Linux or [nvm-windows](https://github.com/coreybutler/nvm-windows) for Windows
+1. Install Node.js on your system, preferably using [nvm](https://github.com/nvm-sh/nvm) for Linux or [nvm-windows](https://github.com/coreybutler/nvm-windows) for Windows
 
 2. Clone the repository:
 
