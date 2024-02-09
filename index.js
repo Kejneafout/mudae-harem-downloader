@@ -4,16 +4,16 @@ const path = require('path');
 const archiver = require('archiver');
 const moment = require('moment');
 
-async function saveHarem(inputFile) {
+async function fetchSeriesValues(inputFile) {
 
-    const regex = /^(#\d+).{3}([^|]+)(?: \| (.+))? (\d+ ka).{3}(.+)/;
+    const regex = /(#\d+) - (.+?) - (.+?) (\d+ ka)/;
     const inputData = fs.readFileSync(inputFile, 'utf-8');
     const _data = inputData.split('\n');
-    const _head = _data.slice(0, 6);
-    const _body = _data.slice(7);
+    const _head = _data.slice(0, 3);
+    const _body = _data.slice(4);
 
     const title = _head[0].trim();
-    const total = _head[5].match(/\d+/)[0];
+    const total = _head[2].match(/\d+/)[0];
 
     const data = {
 	metadata: {
@@ -21,7 +21,7 @@ async function saveHarem(inputFile) {
 	    total: total
 	}
     };
-
+  
     const characters = [];
 
     for (const line of _body) {
@@ -36,9 +36,8 @@ async function saveHarem(inputFile) {
 	    const character = {};
 	    character.rank = elements[1];
 	    character.name = elements[2];
-	    character.note = elements[3] || '';
+	    character.series = elements[3];
 	    character.value = elements[4];
-	    character.image = elements[5];
 	    characters.push(character);
 	} else {
 	    console.error(`Error parsing line: ${line}`);
@@ -48,6 +47,34 @@ async function saveHarem(inputFile) {
     data.characters = characters;
     return data;
 }
+
+async function fetchNotesImages(inputFile, data) {
+
+    const regex = /^(#\d+).{3}([^|]+)(?: \| (.+)).{2} (.+)/;
+    const inputData = fs.readFileSync(inputFile, 'utf-8');
+    const _data = inputData.split('\n');
+    // const _head = _data.slice(0, 1);
+    const _body = _data.slice(2);
+
+    for (const line of _body) {
+	// Line is empty, skip it
+	if (!line.trim()) {
+	    continue;
+	}
+
+	const elements = line.match(regex);
+      
+	if (elements) {
+	    var result = data.characters.find(search => search.name === elements[2]);
+
+	    result.note = elements[3] || '';
+	    result.image = elements[4];
+	} else {
+	    console.error(`Error parsing line: ${line}`);
+	}
+    }
+}
+
 
 async function saveJsonToFile(data, filename) {
     const jsonFilename = filename;
@@ -135,12 +162,8 @@ async function createZip(exportsDirectory, jsonFilename, imagesDirectory) {
 async function main() {
 
     try {
-	// two text files
-	// rename saveHarem to fetchData
-	const dataJson = await saveHarem('output.txt');
-	// either move download images here or create another function addNotesImages
-	// use the following example line to find object based on character's name
-	// var result = data.find(character => character.ip_address === "180.66.162.255");
+	const dataJson = await fetchSeriesValues('output1_series_value.txt');
+	await fetchNotesImages('output2_notes_image.txt', dataJson);
 	await saveJsonToFile(dataJson, 'data.json');
 	await downloadImages(dataJson.characters, 'images/');
 	await replaceRemotePathsWithLocal(dataJson, 'images/');
