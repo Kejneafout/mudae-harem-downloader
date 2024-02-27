@@ -14,19 +14,19 @@ That archive can then be used with [Mudae Harem Viewer](https://github.com/Kejne
 ## Installation
 
 You have two options:
-- Download and use the pre-compiled binaries in [Releases](#)
-- Clone the repository and compile the app yourself:
+1. Download and use the pre-compiled binaries in [Releases](https://github.com/Kejneafout/mudae-harem-downloader/releases/tag/v1.0.0)
+2. Clone the repository and compile the app yourself:
 
-1. You need [Go](https://golang.org/doc/install) installed on your system.
-2. Clone this repository to your local machine.
+- You need [Go](https://golang.org/doc/install) installed on your system.
+- Clone this repository to your local machine.
    ```bash
    git clone https://github.com/Kejneafout/mudae-harem-downloader.git
    ```
-3. Navigate to the project directory.
+- Navigate to the project directory.
    ```bash
    cd mudae-harem-downloader
    ```
-4. Build the executable.
+- Build the executable.
    ```bash
    go build .
    ```
@@ -40,6 +40,7 @@ You have two options:
 - Copy and paste the output of `$mmsr-i-` in `inputs/2_notes_images.txt`.
 
 **Note:** Copy the outputs manually, do not Right-click => Copy text.
+
 I left my perfect harem in both input files, as an example.
 
 ### 2. Run the executable
@@ -70,7 +71,7 @@ Images are named as follows:
 
 ## Limitations
 
-- Does not take support (`$a2`), only notes (`$n`), it will still work if you don't have notes,
+- Does not take support aliases (`$a2`), only notes (`$n`), still works if you don't have notes,
 - Does not download images in formats other than `.png` or `.gif`, such as `.webp`,
 - Does not take like ranks into account, only claim ranks (`r-` flag),
 - Does not take keys value into account (`k-` flag),
