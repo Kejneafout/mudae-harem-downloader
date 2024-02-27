@@ -45,6 +45,16 @@ I left my perfect harem in both input files, as an example.
 
 ### 2. Run the executable
 
+- On Linux:
+```bash
+./mudae-harem-downloader-linux > logs.txt
+```
+
+- On Windows:
+```cmd
+.\mudae-harem-downloader-windows > logs.txt
+```
+
 ### 3. Access the output archive
 
 Once the script has finished running, you will find the following files in the `exports/` directory:
