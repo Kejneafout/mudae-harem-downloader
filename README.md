@@ -4,58 +4,58 @@ Mudae Harem Downloader is a tool for converting data from the Mudae game into a 
 
 That archive can then be used with [Mudae Harem Viewer](https://github.com/Kejneafout/mudae-harem-viewer) to view your harem as if you typed the `$mm` command !
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [How it works](#how-it-works)
+- [License](#license)
+
 ## Installation
 
-1. Install Node.js on your system, preferably using [nvm](https://github.com/nvm-sh/nvm) for Linux or [nvm-windows](https://github.com/coreybutler/nvm-windows) for Windows
+You have two options:
+- Download and use the pre-compiled binaries in [Releases](#)
+- Clone the repository and compile the app yourself:
 
-2. Clone the repository:
-
+1. You need [Go](https://golang.org/doc/install) installed on your system.
+2. Clone this repository to your local machine.
    ```bash
    git clone https://github.com/Kejneafout/mudae-harem-downloader.git
    ```
-
-3. Navigate to the project directory:
-
+3. Navigate to the project directory.
    ```bash
    cd mudae-harem-downloader
    ```
-
-4. Install dependencies:
-
+4. Build the executable.
    ```bash
-   npm install
+   go build .
    ```
-
-## Dependencies
-
-The Mudae Harem Downloader relies on the following npm packages:
-
-- [Axios](https://www.npmjs.com/package/axios): Promise-based HTTP client for the browser and Node.js.
-- [Archiver](https://www.npmjs.com/package/archiver): Streaming interface for creating and extracting zip archives.
-- [Moment](https://www.npmjs.com/package/moment): Parse, validate, manipulate, and display dates and times in JavaScript.
 
 ## Usage
 
-### 1. Prepare Input Data
+### 1. Prepare input files
 
 - Run the `$mmsr-a+k-` and `$mmsr-i-` commands on your favorite server,
-- Copy and paste the output of `$mmsr-a+k-` in `output1_series_values.txt`.
-- Copy and paste the output of `$mmsr-i-` in `output2_notes_images.txt`.
+- Copy and paste the output of `$mmsr-a+k-` in `inputs/1_series_values.txt`,
+- Copy and paste the output of `$mmsr-i-` in `inputs/2_notes_images.txt`.
 
 **Note:** Copy the outputs manually, do not Right-click => Copy text.
+I left my perfect harem in both input files, as an example.
 
-I left my perfect harem in both output files as an example.
+### 2. Run the executable
 
-### 2. Run the Script
+### 3. Access the output archive
 
-Run the script using Node.js. Execute the following command in the terminal:
+Once the script has finished running, you will find the following files in the `exports/` directory:
 
-```bash
-node index.js
-```
+- `export_YYYYMMDD_HHmmss.zip`: archive containing `data.json` and character `images/`.
 
-The script will:
-- Convert data from both output files into JSON format and save it to `data.json`,
+You can upload this to my other tool: [Mudae Harem Viewer](https://github.com/Kejneafout/mudae-harem-viewer)
+
+## How it works
+
+The script:
+- Converts data from both input files into JSON format and save it to `data.json`,
 - Download remote `.png` or `.gif` images and save them in the `images/` directory,
 - Change remote image paths to local image paths in `images/`,
 - Create a `.zip` archive in the `exports/` directory, containing the `data.json` file and `images/` directory,
@@ -68,20 +68,13 @@ Images are named as follows:
 - `[rank]` is the character's claim rank,
 - `[name]` is the character's name.
 
-### 3. Access the Output
-
-Once the script has finished running, you will find the following files in the `exports/` directory:
-
-- `export_YYYYMMDD_HHmmss.zip`: archive containing `data.json` and character `images/`.
-
-You can upload this to my other tool: [Mudae Harem Viewer](https://github.com/Kejneafout/mudae-harem-viewer)
-
 ## Limitations
 
-- Does not take `$a2` into account, only `$n`, it will still work if you don't have any,
+- Does not take support (`$a2`), only notes (`$n`), it will still work if you don't have notes,
 - Does not download images in formats other than `.png` or `.gif`, such as `.webp`,
 - Does not take like ranks into account, only claim ranks (`r-` flag),
-- Does not take keys value into account (`k-` flag).
+- Does not take keys value into account (`k-` flag),
+- Does not support custom embed colors (`$ec`).
 
 ## License
 
