@@ -89,4 +89,4 @@ Images are named as follows:
 
 ## License
 
-This project is licensed under the GNU General Public License (GPL) - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License (GPL) - see the [COPYING](COPYING) file for details.
