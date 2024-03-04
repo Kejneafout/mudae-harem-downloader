@@ -39,8 +39,8 @@ func FetchSeriesValues(inputFile string) (data Data, err error) {
 	var head []string
 	var body []string
 
-	// Read the first 3 lines for metadata
-	for i := 0; i < 3 && scanner.Scan(); i++ {
+	// Read the first 7 lines for metadata
+	for i := 0; i < 6 && scanner.Scan(); i++ {
 		head = append(head, scanner.Text())
 	}
 
@@ -50,7 +50,7 @@ func FetchSeriesValues(inputFile string) (data Data, err error) {
 	}
 
 	title := strings.TrimSpace(head[0])
-	total := regexp.MustCompile(`\d+`).FindString(head[2])
+	total := regexp.MustCompile(`\d+`).FindString(head[5])
 
 	data.Metadata.Title = title
 	data.Metadata.Total = total
@@ -74,7 +74,7 @@ func FetchSeriesValues(inputFile string) (data Data, err error) {
 			}
 			characters = append(characters, character)
 		} else {
-			fmt.Printf("Error parsing SV line: %s\n", line)
+			fmt.Printf("Error parsing series_values line: %s\n", line)
 		}
 	}
 

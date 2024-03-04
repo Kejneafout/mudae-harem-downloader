@@ -35,9 +35,9 @@ You have two options:
 
 ### 1. Prepare input files
 
-- Run the `$mmsr-a+k-` and `$mmsr-i-` commands on your favorite server,
+- Run the `$mmsr-a+k-` and `$mmsi-` commands on your favorite server,
 - Copy and paste the output of `$mmsr-a+k-` in `inputs/1_series_values.txt`,
-- Copy and paste the output of `$mmsr-i-` in `inputs/2_notes_images.txt`.
+- Copy and paste the output of `$mmsi-` in `inputs/2_notes_images.txt`.
 
 **Note:** Copy the outputs manually, do not Right-click => Copy text.
 

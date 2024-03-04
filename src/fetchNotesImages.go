@@ -28,7 +28,7 @@ func FetchNotesImages(inputFile string, data Data) (err error) {
 		body = append(body, scanner.Text())
 	}
 
-	regex := regexp.MustCompile(`^(#\d+).{3}([^|]+)(?: \| (.+)).{2} (.+)`)
+	regex := regexp.MustCompile(`^(.+?)\s*(?:\|\s*(.+?))?\s*-\s*(https?:\/\/\S+)`)
 
 	for _, line := range body {
 		if strings.TrimSpace(line) == "" {
@@ -38,14 +38,14 @@ func FetchNotesImages(inputFile string, data Data) (err error) {
 		elements := regex.FindStringSubmatch(line)
 		if elements != nil {
 			for i, character := range data.Characters {
-				if character.Name == elements[2] {
-					data.Characters[i].Note = elements[3]
-					data.Characters[i].Image = elements[4]
+				if character.Name == elements[1] {
+					data.Characters[i].Note = elements[2]
+					data.Characters[i].Image = elements[3]
 					break
 				}
 			}
 		} else {
-			fmt.Printf("Error parsing NI line: %s\n", line)
+			fmt.Printf("Error parsing notes_images line: %s\n", line)
 		}
 	}
 
