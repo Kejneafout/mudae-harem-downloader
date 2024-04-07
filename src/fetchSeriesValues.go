@@ -39,8 +39,26 @@ func FetchSeriesValues(inputFile string) (data Data, err error) {
 	var head []string
 	var body []string
 
-	// Read the first 7 lines for metadata
-	for i := 0; i < 6 && scanner.Scan(); i++ {
+	var totalLines int
+
+	// Read the whole file to count the number of lines
+	for scanner.Scan() {
+		totalLines++
+	}
+
+	metadataLines := 4 // Default to 4 lines of metadata
+
+	// Decide metadata lines based on total lines
+	if totalLines >= 22 {
+		metadataLines = 7
+	}
+
+	// Reset file scanner
+	file.Seek(0, 0) // Reset file pointer to beginning
+	scanner = bufio.NewScanner(file)
+
+	// Read metadata
+	for i := 0; i < metadataLines && scanner.Scan(); i++ {
 		head = append(head, scanner.Text())
 	}
 
@@ -50,7 +68,7 @@ func FetchSeriesValues(inputFile string) (data Data, err error) {
 	}
 
 	title := strings.TrimSpace(head[0])
-	total := regexp.MustCompile(`\d+`).FindString(head[5])
+	total := regexp.MustCompile(`\d+`).FindString(head[metadataLines - 2])
 
 	data.Metadata.Title = title
 	data.Metadata.Total = total
