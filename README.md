@@ -53,7 +53,7 @@ I left my soulmates list in both input files, as an example.
 
 - On Windows:
 ```cmd
-.\mudae-harem-downloader-windows > logs.txt
+.\mudae-harem-downloader-windows.exe > logs.txt
 ```
 
 ### 3. Access the output archive
