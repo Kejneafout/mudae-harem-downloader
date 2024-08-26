@@ -35,13 +35,14 @@ You have two options:
 
 ### 1. Prepare input files
 
-- Run the `$mmsr-a+k-` and `$mmsi-` commands on your favorite server,
-- Copy and paste the output of `$mmsr-a+k-` in `inputs/1_series_values.txt`,
+- Run the `$mmsr-a+ky+` and `$mmsi-` commands on your favorite server,
+- Copy and paste the output of `$mmsr-a+ky+` in `inputs/1_keys_series_values.txt`,
 - Copy and paste the output of `$mmsi-` in `inputs/2_notes_images.txt`.
 
 **Note:** Copy the outputs manually, do not Right-click => Copy text.
+**Warning:** Some text editors do not like the special dot separator '·' used for keys.
 
-I left my perfect harem in both input files, as an example.
+I left my soulmates list in both input files, as an example.
 
 ### 2. Run the executable
 
@@ -84,7 +85,6 @@ Images are named as follows:
 - Does not take support aliases (`$a2`), only notes (`$n`), still works if you don't have notes,
 - Does not download images in formats other than `.png` or `.gif`, such as `.webp`,
 - Does not take like ranks into account, only claim ranks (`r-` flag),
-- Does not take keys value into account (`k-` flag),
 - Does not support custom embed colors (`$ec`).
 
 ## License

@@ -11,6 +11,8 @@ import (
 type Character struct {
 	Rank    string `json:"rank"`
 	Name    string `json:"name"`
+	KeyType string `json:"keyType"`
+	Keys	string `json:"keys"`
 	Series  string `json:"series"`
 	Value   string `json:"value"`
 	Note    string `json:"note"`
@@ -27,7 +29,7 @@ type Data struct {
 	Characters []Character `json:"characters"`
 }
 
-func FetchSeriesValues(inputFile string) (data Data, err error) {
+func FetchKeysSeriesValues(inputFile string) (data Data, err error) {
 	file, err := os.Open(inputFile)
 	if err != nil {
 		return data, err
@@ -75,7 +77,7 @@ func FetchSeriesValues(inputFile string) (data Data, err error) {
 
 	var characters []Character
 
-	regex := regexp.MustCompile(`(#\d+) - (.+?) - (.+?) (\d+ ka)`)
+	regex := regexp.MustCompile(`(#\d+) - (.+?)(?: · :(.+):\s*\((.+?)\))? - (.+?) (\d+ ka)`)
 
 	for _, line := range body {
 		if strings.TrimSpace(line) == "" {
@@ -87,8 +89,10 @@ func FetchSeriesValues(inputFile string) (data Data, err error) {
 			character := Character{
 				Rank:   elements[1],
 				Name:   elements[2],
-				Series: elements[3],
-				Value:  elements[4],
+				KeyType: elements[3],
+				Keys:	elements[4],
+				Series: elements[5],
+				Value:  elements[6],
 			}
 			characters = append(characters, character)
 		} else {

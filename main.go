@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	dataJson, err := src.FetchSeriesValues("inputs/1_series_values.txt")
+	dataJson, err := src.FetchKeysSeriesValues("inputs/1_keys_series_values.txt")
 	if err != nil {
 		fmt.Println("An error occurred:", err)
 		return
