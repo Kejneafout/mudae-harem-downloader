@@ -40,6 +40,7 @@ You have two options:
 - Copy and paste the output of `$mmsi-` in `inputs/2_notes_images.txt`.
 
 **Note:** Copy the outputs manually, do not Right-click => Copy text.
+
 **Warning:** Some text editors do not like the special dot separator '·' used for keys.
 
 I left my soulmates list in both input files, as an example.
