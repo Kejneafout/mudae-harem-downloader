@@ -39,11 +39,11 @@ You have two options:
 - Copy and paste the output of `$mmsr-a+ky+` in `inputs/1_keys_series_values.txt`,
 - Copy and paste the output of `$mmsi-` in `inputs/2_notes_images.txt`.
 
-**Note:** Copy the outputs manually, do not Right-click => Copy text.
+**Info:** I left my soulmates list in both input files, as an example.
 
-**Warning:** Some text editors do not like the special dot separator '·' used for keys.
-
-I left my soulmates list in both input files, as an example.
+**Warnings:**
+- Copy the outputs manually, **DO NOT** `Right-click => Copy text` !
+- Some text editors do not like the special dot separator '·' used for keys, make sure your editor doesn't corrupt the data because of this !
 
 ### 2. Run the executable
 
